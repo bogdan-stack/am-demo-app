@@ -15,6 +15,21 @@ type RecommendationResult = {
   furnizoriRecomandati: any[];
 };
 
+type Question = 
+  | {
+      id: string;
+      label: string;
+      type: 'scale';
+      min: number;
+      max: number;
+      labels: string[];
+    }
+  | {
+      id: string;
+      label: string;
+      options: { value: string; label: string; }[];
+    };
+
 const AMDecisionTree = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
@@ -860,7 +875,7 @@ const AMDecisionTree = () => {
               </div>
             ) : (
               <div className="space-y-3">
-                {currentQuestion.options.map(option => (
+                {(currentQuestion.options || []).map(option => (
                   <button
                     key={option.value}
                     onClick={() => handleAnswer(currentQuestion.id, option.value)}
