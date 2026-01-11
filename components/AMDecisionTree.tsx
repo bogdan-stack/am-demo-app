@@ -17,7 +17,7 @@ type RecommendationResult = {
 
 const AMDecisionTree = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const [answers, setAnswers] = useState<Record<string, any>>({});
   const [result, setResult] = useState<RecommendationResult | null>(null);
 
   const furnizori = [
