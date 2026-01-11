@@ -4,10 +4,21 @@ import React, { useState } from 'react';
 import { ChevronRight, CheckCircle, Info, Book } from 'lucide-react';
 import LogoBar from './LogoBar';
 
+type RecommendationResult = {
+  technology: string;
+  alternativeTech: string | null;
+  approach: string;
+  alternativeApproach: string | null;
+  techScores: { tech: string; score: number; details: any; }[];
+  approachScores: { approach: string; score: number; details: any; }[];
+  allScores: { tech: any; details: any };
+  furnizoriRecomandati: any[];
+};
+
 const AMDecisionTree = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<RecommendationResult | null>(null);
 
   const furnizori = [
     {
